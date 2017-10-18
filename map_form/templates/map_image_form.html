@@ -14,7 +14,7 @@
 		margin-top: 520px;
 	}
 </style>
-<form action="" method="post">
+<form action="" enctype="multipart/form-data"  method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
