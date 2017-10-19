@@ -25,7 +25,7 @@ SECRET_KEY = 'y7@_c*$!@q+zr!+_zl%i2+=$d5v#*f(w5q)6ze(%p9$+r3l-+c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,8 +81,8 @@ DATABASES = {
         'NAME': 'gis',
         'USER': 'docker',
         'PASSWORD': 'docker',
-        'HOST': 'localhost',
-        'PORT': 25432,
+        'HOST': 'db',
+        'PORT': 5432,
         'TEST_NAME': 'unittests',
     }
 }

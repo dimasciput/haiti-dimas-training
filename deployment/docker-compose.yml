@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: kartoza/geonode_db
+    volumes:
+      - ./backups:/backups
+  web:
+    build: ./docker
+    command: "python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - ../django_project:/home/web/django_project
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - db:db
