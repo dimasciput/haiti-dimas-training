@@ -20,13 +20,13 @@ class IndexView(ListView):
 class InsertView(FormView):
 	template_name = 'map_image_form.html'
 	form_class = MapImageForm
-	success_url = '/map/'
+	success_url = '/'
 
 	def form_valid(self, form):
 		# This method is called when valid form data has been POSTed
 		post = form.save(commit=False)
 		post.name = self.request.POST.get('name')
-		post.image = self.request.POST.get('image')
+		post.image = self.request.FILES.get('image')
 		post.location = self.request.POST.get('location')
 		post.save()
 		return super(InsertView, self).form_valid(form)
