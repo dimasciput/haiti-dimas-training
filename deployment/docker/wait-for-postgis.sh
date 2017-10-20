@@ -7,7 +7,7 @@ host="$1"
 shift
 cmd="$@"
 
-until psql -h "$host" -U "postgis" -c '\l'; do
+until psql -U "docker" -h "$host" gis -c '\l'; do
   >&2 echo "Postgis is unavailable - sleeping"
   sleep 1
 done

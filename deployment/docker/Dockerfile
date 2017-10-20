@@ -12,16 +12,17 @@ RUN apt-get -y install \
     nodejs \
     rpl
 
-ADD uwsgi.conf /uwsgi.conf
-
 ADD requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
+
+RUN apt-get -y install postgresql-9.4
+
+ADD wait-for-postgis.sh /wait-for-postgis.sh
+RUN chmod 0755 /wait-for-postgis.sh
+
+ADD docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod 0755 /docker-entrypoint.sh
 
 EXPOSE 8080
 
 WORKDIR /home/web/django_project
-
-ADD wait-for-it.sh /wait-for-it.sh
-RUN chmod 0755 /wait-for-it.sh
-
-CMD ["uwsgi", "--ini", "/uwsgi.conf"]
